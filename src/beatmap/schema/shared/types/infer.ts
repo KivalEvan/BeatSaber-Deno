@@ -14,6 +14,10 @@ export type InferBeatmapVersion<
    : TFileType extends 'lightshow' ? 3 | 4
    : number;
 
+/** Source versions for wrapper conversion, including lighting embedded in v1/v2 difficulties. */
+export type InferBeatmapSourceVersion<TFileType extends BeatmapFileType = BeatmapFileType> =
+   InferBeatmapVersion<TFileType extends 'lightshow' ? 'difficulty' : TFileType>;
+
 export type InferBeatmapWrapper<
    TFileType extends BeatmapFileType = BeatmapFileType,
 > = TFileType extends 'info' ? IWrapInfo

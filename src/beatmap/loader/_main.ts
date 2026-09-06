@@ -4,6 +4,7 @@ import type { ILoadOptions } from './types.ts';
 import type { MirrorFn } from '../schema/shared/types/functions.ts';
 import type {
    InferBeatmapSerial,
+   InferBeatmapSourceVersion,
    InferBeatmapVersion,
    InferBeatmapWrapper,
 } from '../schema/shared/types/infer.ts';
@@ -154,7 +155,7 @@ export function loadBeatmap<
          type,
          ver,
          attribute,
-         attribute.version as InferBeatmapVersion<TFileType>,
+         attribute.version as InferBeatmapSourceVersion<TFileType>,
       );
    }
 

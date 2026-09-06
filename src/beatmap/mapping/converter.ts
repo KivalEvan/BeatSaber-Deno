@@ -1,4 +1,8 @@
-import type { InferBeatmapVersion, InferBeatmapWrapper } from '../schema/shared/types/infer.ts';
+import type {
+   InferBeatmapSourceVersion,
+   InferBeatmapVersion,
+   InferBeatmapWrapper,
+} from '../schema/shared/types/infer.ts';
 import type { BeatmapFileType } from '../schema/shared/types/schema.ts';
 import { toV1Beatmap } from '../converter/toV1/beatmap.ts';
 import { toV1Info } from '../converter/toV1/info.ts';
@@ -66,7 +70,7 @@ export const beatmapConvertMap: ConverterMap<'difficulty' | 'lightshow'> = {
  * @param type The beatmap file type.
  * @param targetVersion The new map format to convert the beatmap file into.
  * @param data The wrapper contents of the beatmap file.
- * @param sourceVersion The original map format of the beatmap file.
+ * @param sourceVersion The original map format. Lightshow sources include lighting embedded in v1/v2 difficulties.
  * @returns The converted wrapper contents of the beatmap file.
  */
 export function convertBeatmap<
@@ -77,7 +81,7 @@ export function convertBeatmap<
    type: TFileType,
    targetVersion: TVersion,
    data: TWrapper,
-   sourceVersion?: InferBeatmapVersion<TFileType>,
+   sourceVersion?: InferBeatmapSourceVersion<TFileType>,
 ): TWrapper {
    const logger = getLogger();
 
@@ -86,7 +90,7 @@ export function convertBeatmap<
    }
    if (
       sourceVersion !== undefined &&
-      !isSupportedMajorVersion(type, sourceVersion as number)
+      !isSupportedMajorVersion(type === 'lightshow' ? 'difficulty' : type, sourceVersion as number)
    ) {
       throw new Error(
          `Unsupported ${type} source beatmap version ${String(sourceVersion)}.`,

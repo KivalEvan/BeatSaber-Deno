@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.1 [Unreleased]
+
+```diff
+* Fixed lightshow conversion rejecting lighting from v1/v2 difficulties as an unsupported source version (#15 by @officialMECH)
+```
+
 ## 3.0.0 [2026-09-06]
 
 Read the [migration guidance](./GUIDE.md#migration) before you upgrade.
@@ -20,10 +26,6 @@ Read the [migration guidance](./GUIDE.md#migration) before you upgrade.
   File writes also reject `NaN` and infinite numbers.
 # `retrieveVersion` returns the raw value as `unknown`, or `undefined` when no version key exists (breaking)
   An own `_version` key takes precedence over `version`, even when its value is nullish.
-# Schema containers and `ISchemaContainer` are removed (breaking)
-  Schema modules expose standalone `serialize*` and `deserialize*` functions, with separate maps for each direction.
-# The `formatNumber` utility is removed (breaking)
-  Use `Intl.NumberFormat` for number formatting.
 * Corrected v2/v3 to v4 conversion when EARLY and LATE rotation events occur at the same beat
 * File writes replace the destination atomically where the filesystem supports it, instead of
   exposing partially written JSON. File metadata can change, and crash durability is not guaranteed.
@@ -39,6 +41,10 @@ Read the [migration guidance](./GUIDE.md#migration) before you upgrade.
 * Improved serializer and deserializer map types with generic contracts that preserve version-specific
   inputs, outputs, and options. Runtime behavior is unchanged.
 * Reduced NPM package size and improved support for tree-shaking
+- Schema containers and `ISchemaContainer` are removed (breaking)
+  Schema modules expose standalone `serialize*` and `deserialize*` functions, with separate maps for each direction.
+- The `formatNumber` utility is removed (breaking)
+  Use `Intl.NumberFormat` for number formatting.
 ```
 
 ## 2.3.6 [2026-06-28]
