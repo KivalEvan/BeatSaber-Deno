@@ -61,3 +61,8 @@ export type Nullable<T> = T extends Primitive ? T | null
 export type Member<T> = T extends Readonly<Array<unknown>> ? T[number]
    : T extends Readonly<Record<PropertyKey, unknown>> ? T[keyof T]
    : never;
+
+type Inspect<T> = T extends infer R ? R : never;
+
+/** Allow a fallback type to be used when the supplied type is `never`. */
+export type Fallback<T, TFallback> = Inspect<T> extends never ? TFallback : T;
