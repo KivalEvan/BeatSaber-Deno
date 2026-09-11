@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.0.1 [Unreleased]
+## 3.0.1 [2026-09-11]
 
 ```diff
 * Fixed lightshow conversion rejecting lighting from v1/v2 difficulties as an unsupported source version (#15 by @officialMECH)
@@ -11,8 +11,7 @@
 Read the [migration guidance](./GUIDE.md#migration) before you upgrade.
 
 ```diff
-+ Added focused imports for types, utilities, and versioned schemas, so applications can import only
-  the features they use.
++ Added focused imports for types, utilities, and versioned schemas, so applications can import only the features they use.
 + Added the Hip Hop Mixtape 2 environment, color scheme, and event track metadata from Beat Saber 1.45.0
 # Core classes moved to `@kvl/bsmap/extensions/core` (`bsmap/extensions/core` on NPM) (breaking)
   Root class exports and the `beatmap/core` subpath are removed.
